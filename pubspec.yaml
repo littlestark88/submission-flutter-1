@@ -29,7 +29,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.3
-  provider: ^5.0.0
   dartz: ^0.10.0-nullsafety.2
   equatable: ^2.0.2
   google_fonts: ^2.1.0
@@ -37,16 +36,25 @@ dependencies:
   cached_network_image: ^3.0.0
   get_it: ^7.1.3
   sqflite: ^2.0.0+3
-  path_provider: ^2.0.2
-  alice: ^0.2.5
+  lottie: ^1.2.2
+  flutter_bloc: ^8.0.1
+  rxdart: ^0.27.3
   data_connection_checker:
     git:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
 
+  core:
+    path: core
+  movie:
+    path: movie
+  tv:
+    path: tv
+
 dev_dependencies:
   mockito: ^5.0.8
   build_runner: ^2.0.4
+  bloc_test: ^9.0.2
   flutter_test:
     sdk: flutter
 

@@ -1,0 +1,32 @@
+import 'package:core/domain/entities/movie.dart';
+import 'package:core/domain/repositories/movie_repository.dart';
+import 'package:core/domain/usecases/get_now_playing_movies.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockMovieRepository extends Mock implements MovieRepository {}
+
+void main() {
+  late GetNowPlayingMovies usecase;
+  late MockMovieRepository mockMovieRepository;
+
+  setUp(() {
+    mockMovieRepository = MockMovieRepository();
+    usecase = GetNowPlayingMovies(mockMovieRepository);
+  });
+
+  final tMovies = <Movie>[];
+
+  group('Movie Use Cases, Get Movie Now Playing:', () {
+    test('should get list of movies from the repository', () async {
+      // arrange
+      when(() => mockMovieRepository.getNowPlayingMovies())
+          .thenAnswer((_) async => Right(tMovies));
+      // act
+      final result = await usecase.execute();
+      // assert
+      expect(result, Right(tMovies));
+    });
+  });
+}
