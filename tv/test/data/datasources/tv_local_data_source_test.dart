@@ -4,7 +4,8 @@ import 'package:core/data/datasources/tv_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 class MockDatabaseHelper extends Mock implements DatabaseHelper {}
 
@@ -21,10 +22,10 @@ void main() {
     test('should return success message when insert to database is success',
         () async {
       // arrange
-      when(() => mockDatabaseHelper.insertWatchlistTv(testTVTable))
+      when(() => mockDatabaseHelper.insertWatchlistTv(testTvTable))
       .thenAnswer((_) async => 1);
       // act
-      final result = await dataSourceImpl.insertWatchlist(testTVTable);
+      final result = await dataSourceImpl.insertWatchlist(testTvTable);
       // assert
       expect(result, 'Added to Watchlist');
     });
@@ -32,10 +33,10 @@ void main() {
     test('should throw DatabaseException when insert to database is failed',
         () async {
       // arrange
-      when(() => mockDatabaseHelper.insertWatchlistTv(testTVTable))
+      when(() => mockDatabaseHelper.insertWatchlistTv(testTvTable))
           .thenThrow(Exception());
       // act
-      final call = dataSourceImpl.insertWatchlist(testTVTable);
+      final call = dataSourceImpl.insertWatchlist(testTvTable);
       // assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });
@@ -45,10 +46,10 @@ void main() {
     test('should return success message when remove from database is success',
         () async {
       // arrange
-      when(() => mockDatabaseHelper.removeWatchlistTv(testTVTable))
+      when(() => mockDatabaseHelper.removeWatchlistTv(testTvTable))
           .thenAnswer((_) async => 1);
       // act
-      final result = await dataSourceImpl.removeWatchlist(testTVTable);
+      final result = await dataSourceImpl.removeWatchlist(testTvTable);
       // assert
       expect(result, 'Removed from Watchlist');
     });
@@ -56,10 +57,10 @@ void main() {
     test('should throw DatabaseException when remove from database is failed',
         () async {
       // arrange
-      when(() => mockDatabaseHelper.removeWatchlistTv(testTVTable))
+      when(() => mockDatabaseHelper.removeWatchlistTv(testTvTable))
           .thenThrow(Exception());
       // act
-      final call = dataSourceImpl.removeWatchlist(testTVTable);
+      final call = dataSourceImpl.removeWatchlist(testTvTable);
       // assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });
@@ -71,11 +72,11 @@ void main() {
     test('should return TV Show Detail Table when data is found', () async {
       // arrange
       when(() => mockDatabaseHelper.getTvById(tId))
-          .thenAnswer((_) async => testTVMap);
+          .thenAnswer((_) async => testTvMap);
       // act
       final result = await dataSourceImpl.getTvId(tId);
       // assert
-      expect(result, testTVTable);
+      expect(result, testTvTable);
     });
 
     test('should return null when data is not found', () async {
@@ -92,11 +93,11 @@ void main() {
     test('should return list of TVShowsTable from database', () async {
       // arrange
       when(() => mockDatabaseHelper.getWatchlistTv())
-          .thenAnswer((_) async => [testTVMap]);
+          .thenAnswer((_) async => [testTvMap]);
       // act
       final result = await dataSourceImpl.getWatchlistTv();
       // assert
-      expect(result, [testTVTable]);
+      expect(result, [testTvTable]);
     });
   });
 }

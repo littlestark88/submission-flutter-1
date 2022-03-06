@@ -6,70 +6,58 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helper/json_reader.dart';
 
+
 void main() {
-  final tTVModel = TvModel(
-    backdropPath: "/path.jpg",
-    genreIds: const [1, 2, 3, 4],
+  const tTvModel = TvModel(
+    backdropPath: 'backdropPath',
+    genreIds: [1, 2, 3],
     id: 1,
-    name: "Name",
-    originalLanguage: "en",
-    originalName: "Original Name",
-    overview: "Overview",
+    name: 'name',
+    originalLanguage: 'en',
+    originalName: null,
+    overview: 'overview',
     popularity: 1.0,
-    posterPath: "/path.jpg",
+    posterPath: 'posterPath',
     voteAverage: 1.0,
     voteCount: 1,
   );
-
-  final tTVResponseModel = TvResponse(tvList: <TvModel>[tTVModel]);
-
+  final tTvResponseModel =
+      TvResponse(tvList: <TvModel>[tTvModel]);
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
       // arrange
-      final dataJson = readJson('helper/dummy_data/airing_today.json');
-      // act
-      final result = TvResponse.fromJson(json.decode(dataJson));
-      // assert
-      expect(result, tTVResponseModel);
-    });
-  });
-
-  group('TV Model, TV Response Model:', () {
-    test('should return a valid model from JSON', () async {
-      // arrange
       final Map<String, dynamic> jsonMap =
-          json.decode(readJson('helper/dummy_data/airing_today.json'));
+          json.decode(readJson('helper/dummy_data/tv_airing_today.json'));
       // act
       final result = TvResponse.fromJson(jsonMap);
       // assert
-      expect(result, tTVResponseModel);
+      expect(result, tTvResponseModel);
     });
+  });
 
-    test('should return a JSON map containing proper data', () {
+  group('toJson', () {
+    test('should return a JSON map containing proper data', () async {
       // arrange
 
       // act
-      final result = tTVResponseModel.toJson();
+      final result = tTvResponseModel.toJson();
       // assert
       final expectedJsonMap = {
         "results": [
           {
-            "adult": null,
-            "backdrop_path": '/path.jpg',
-            "first_air_date": '2021-12-15',
-            "genre_ids": [1, 2, 3, 4],
+            "backdrop_path": 'backdropPath',
+            "genre_ids": [1, 2, 3],
             "id": 1,
-            "name": "Name",
-            "origin_country": ["US"],
-            "original_language": "en",
-            "original_name": "Original Name",
-            "overview": "Overview",
+            "name": 'name',
+            "original_language": 'en',
+            "original_name": null,
+            "overview": 'overview',
             "popularity": 1.0,
-            "poster_path": "/path.jpg",
+            "poster_path": 'posterPath',
             "vote_average": 1.0,
             "vote_count": 1,
           }
-        ]
+        ],
       };
       expect(result, expectedJsonMap);
     });

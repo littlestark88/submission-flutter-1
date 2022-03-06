@@ -9,6 +9,8 @@ import '../widgets/tv_card_list.dart';
 class PopularTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv';
 
+  const PopularTvPage({Key? key}) : super(key: key);
+
   @override
   _PopularTvPageState createState() => _PopularTvPageState();
 }
@@ -24,14 +26,14 @@ class _PopularTvPageState extends State<PopularTvPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Tv'),
+        title: const Text('Popular Tv'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<PopularTvBloc, PopularTvState>(
           builder: (context, state) {
             if (state is PopularTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularTvHasData) {
@@ -44,7 +46,7 @@ class _PopularTvPageState extends State<PopularTvPage> {
               );
             } else if (state is PopularTvError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {

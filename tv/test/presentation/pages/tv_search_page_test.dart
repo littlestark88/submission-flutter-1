@@ -10,7 +10,8 @@ import 'package:tv/bloc/searchtv/search_state_tv.dart';
 import 'package:tv/bloc/searchtv/search_tv_bloc.dart';
 import 'package:tv/page/search_tv_page.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 
 class MockSearchTVBloc extends MockBloc<SearchEvent, SearchStateTv>
@@ -63,7 +64,7 @@ void main() {
     testWidgets('page should display ListView when data is loaded',
         (WidgetTester tester) async {
       when(() => mockSearchTVBloc.state)
-          .thenReturn(SearchTvHasData(testTVShowsList));
+          .thenReturn(SearchTvHasData(testTvList));
 
       await tester.pumpWidget(_makeTestableWidget(SearchTvPage()));
 

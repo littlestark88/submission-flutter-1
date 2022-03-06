@@ -13,7 +13,7 @@ import 'package:tv/bloc/watchlisttvstatus/watchlist_tv_status_bloc.dart';
 import 'package:tv/bloc/watchlisttvstatus/watchlist_tv_status_state.dart';
 import 'package:tv/page/tv_detail_page.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
 
 
 class MockDetailTVBloc extends MockBloc<TvDetailEvent, TvDetailState>
@@ -80,7 +80,7 @@ void main() {
           .thenReturn(TvRecommendationLoading());
 
       await tester.pumpWidget(
-          _makeTestableWidget(TvDetailPage(id: testTVShowDetail.id)));
+          _makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
 
       final progressBarFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
@@ -92,14 +92,14 @@ void main() {
     testWidgets('page should display Detail when data is loaded',
         (WidgetTester tester) async {
       when(() => mockDetailTVBloc.state)
-          .thenReturn(TvDetailHasData(testTVShowDetail));
+          .thenReturn(TvDetailHasData(testTvDetail));
       when(() => mockWatchlistStatusTVCubit.state).thenReturn(
           WatchlistTvStatusState(isAddedWatchlistTv: false, message: ''));
       when(() => mockRecommendationTVBloc.state)
-          .thenReturn(TvRecommendationHasData(testTVShowsList));
+          .thenReturn(TvRecommendationHasData(testTvList));
 
       await tester.pumpWidget(_makeTestableWidget(TvDetailPage(
-        id: testTVShowDetail.id,
+        id: testTvDetail.id,
       )));
 
       final buttonFinder = find.byType(ElevatedButton);
@@ -119,7 +119,7 @@ void main() {
           .thenReturn(TvRecommendationError('Error'));
 
       await tester.pumpWidget(_makeTestableWidget(TvDetailPage(
-        id: testTVShowDetail.id,
+        id: testTvDetail.id,
       )));
 
       final textFinder = find.byKey(const Key('error_message'));
@@ -135,14 +135,14 @@ void main() {
       final iconButton = find.byIcon(Icons.add);
 
       when(() => mockDetailTVBloc.state)
-          .thenReturn(TvDetailHasData(testTVShowDetail));
+          .thenReturn(TvDetailHasData(testTvDetail));
       when(() => mockWatchlistStatusTVCubit.state).thenReturn(
           WatchlistTvStatusState(isAddedWatchlistTv: false, message: ''));
       when(() => mockRecommendationTVBloc.state)
-          .thenReturn(TvRecommendationHasData(testTVShowsList));
+          .thenReturn(TvRecommendationHasData(testTvList));
 
       await tester.pumpWidget(
-          _makeTestableWidget(TvDetailPage(id: testTVShowDetail.id)));
+          _makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
 
       expect(watchlistButton, findsOneWidget);
       expect(iconButton, findsOneWidget);
@@ -155,14 +155,14 @@ void main() {
       final iconButton = find.byIcon(Icons.check);
 
       when(() => mockDetailTVBloc.state)
-          .thenReturn(TvDetailHasData(testTVShowDetail));
+          .thenReturn(TvDetailHasData(testTvDetail));
       when(() => mockWatchlistStatusTVCubit.state).thenReturn(
           WatchlistTvStatusState(isAddedWatchlistTv: true, message: ''));
       when(() => mockRecommendationTVBloc.state)
-          .thenReturn(TvRecommendationHasData(testTVShowsList));
+          .thenReturn(TvRecommendationHasData(testTvList));
 
       await tester.pumpWidget(
-          _makeTestableWidget(TvDetailPage(id: testTVShowDetail.id)));
+          _makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
 
       expect(watchlistButton, findsOneWidget);
       expect(iconButton, findsOneWidget);

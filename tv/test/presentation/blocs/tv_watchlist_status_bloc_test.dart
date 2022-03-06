@@ -9,7 +9,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:tv/bloc/watchlisttvstatus/watchlist_tv_status_bloc.dart';
 import 'package:tv/bloc/watchlisttvstatus/watchlist_tv_status_state.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
 
 class MockGetWatchListStatusTV extends Mock implements GetWatchListStatusTv {}
 
@@ -54,13 +54,13 @@ void main() {
     blocTest<WatchlistTvStatusBloc, WatchlistTvStatusState>(
       'should execute save watchlist when function called',
       build: () {
-        when(() => mockSaveWatchlistTV.execute(testTVShowDetail))
+        when(() => mockSaveWatchlistTV.execute(testTvDetail))
             .thenAnswer((_) async => const Right('Added to Watchlist'));
-        when(() => mockGetWatchListStatusTV.execute(testTVShowDetail.id))
+        when(() => mockGetWatchListStatusTV.execute(testTvDetail.id))
             .thenAnswer((_) async => true);
         return watchlistTvStatusBloc;
       },
-      act: (bloc) => bloc.addWatchlistTv(testTVShowDetail),
+      act: (bloc) => bloc.addWatchlistTv(testTvDetail),
       expect: () => [
         WatchlistTvStatusState(
             isAddedWatchlistTv: true, message: 'Added to Watchlist'),
@@ -70,13 +70,13 @@ void main() {
     blocTest<WatchlistTvStatusBloc, WatchlistTvStatusState>(
       'should update watchlist message when add watchlist failed',
       build: () {
-        when(() => mockSaveWatchlistTV.execute(testTVShowDetail))
+        when(() => mockSaveWatchlistTV.execute(testTvDetail))
             .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
-        when(() => mockGetWatchListStatusTV.execute(testTVShowDetail.id))
+        when(() => mockGetWatchListStatusTV.execute(testTvDetail.id))
             .thenAnswer((_) async => false);
         return watchlistTvStatusBloc;
       },
-      act: (bloc) => bloc.addWatchlistTv(testTVShowDetail),
+      act: (bloc) => bloc.addWatchlistTv(testTvDetail),
       expect: () => [
         WatchlistTvStatusState(isAddedWatchlistTv: false, message: 'Failed'),
       ],
@@ -87,13 +87,13 @@ void main() {
     blocTest<WatchlistTvStatusBloc, WatchlistTvStatusState>(
       'should execute remove watchlist when function called',
       build: () {
-        when(() => mockRemoveWatchlistTV.execute(testTVShowDetail))
+        when(() => mockRemoveWatchlistTV.execute(testTvDetail))
             .thenAnswer((_) async => const Right('Removed'));
-        when(() => mockGetWatchListStatusTV.execute(testTVShowDetail.id))
+        when(() => mockGetWatchListStatusTV.execute(testTvDetail.id))
             .thenAnswer((_) async => true);
         return watchlistTvStatusBloc;
       },
-      act: (bloc) => bloc.removeTvWatchlist(testTVShowDetail),
+      act: (bloc) => bloc.removeTvWatchlist(testTvDetail),
       expect: () => [
         WatchlistTvStatusState(isAddedWatchlistTv: true, message: 'Removed'),
       ],
@@ -102,13 +102,13 @@ void main() {
     blocTest<WatchlistTvStatusBloc, WatchlistTvStatusState>(
       'should update watchlist message when remove watchlist failed',
       build: () {
-        when(() => mockRemoveWatchlistTV.execute(testTVShowDetail))
+        when(() => mockRemoveWatchlistTV.execute(testTvDetail))
             .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
-        when(() => mockGetWatchListStatusTV.execute(testTVShowDetail.id))
+        when(() => mockGetWatchListStatusTV.execute(testTvDetail.id))
             .thenAnswer((_) async => false);
         return watchlistTvStatusBloc;
       },
-      act: (bloc) => bloc.removeTvWatchlist(testTVShowDetail),
+      act: (bloc) => bloc.removeTvWatchlist(testTvDetail),
       expect: () => [
         WatchlistTvStatusState(isAddedWatchlistTv: false, message: 'Failed'),
       ],

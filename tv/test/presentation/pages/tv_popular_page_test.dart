@@ -8,7 +8,8 @@ import 'package:tv/bloc/populartv/popular_tv_event.dart';
 import 'package:tv/bloc/populartv/popular_tv_state.dart';
 import 'package:tv/page/popular_tv_page.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 
 class MockPopularTVBloc
@@ -45,7 +46,7 @@ void main() {
     testWidgets('page should display ListView when data is loaded',
         (WidgetTester tester) async {
       when(() => mockPopularTVBloc.state)
-          .thenReturn(PopularTvHasData(testTVShowsList));
+          .thenReturn(PopularTvHasData(testTvList));
 
       await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
 

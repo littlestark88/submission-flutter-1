@@ -7,8 +7,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:tv/bloc/watchlisttv/watch_tv_bloc.dart';
 import 'package:tv/bloc/watchlisttv/watchlist_tv_event.dart';
 import 'package:tv/bloc/watchlisttv/watchlist_tv_state.dart';
-
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
 
 class MockGetWatchlistTVShows extends Mock implements GetWatchlistTv {}
 
@@ -31,13 +30,13 @@ void main() {
       'should emit[Loading, HasData] when data is gotten successfully',
       build: () {
         when(() => mockGetWatchlistTVShows.execute())
-            .thenAnswer((_) async => Right([testWatchlistTV]));
+            .thenAnswer((_) async => Right([testWatchlistTv]));
         return watchlistTVBloc;
       },
       act: (bloc) => bloc.add(FetchWatchlistTv()),
       expect: () => [
         WatchlistTvLoading(),
-        WatchlistTvHasData([testWatchlistTV])
+        WatchlistTvHasData([testWatchlistTv])
       ],
       verify: (bloc) => verify(() => mockGetWatchlistTVShows.execute()),
     );

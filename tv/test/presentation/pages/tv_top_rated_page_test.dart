@@ -8,7 +8,7 @@ import 'package:tv/bloc/topratedtv/top_rated_tv_event.dart';
 import 'package:tv/bloc/topratedtv/top_rated_tv_state.dart';
 import 'package:tv/page/top_rated_tv_page.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
 
 class MockTopRatedTVBloc
     extends MockBloc<TopRatedTvEvent, TopRatedTvState>
@@ -44,7 +44,7 @@ void main() {
     testWidgets('page should display ListView when data is loaded',
         (WidgetTester tester) async {
       when(() => mockTopRatedTVBloc.state)
-          .thenReturn(TopRatedTvHasData(testTVShowsList));
+          .thenReturn(TopRatedTvHasData(testTvList));
 
       await tester.pumpWidget(_makeTestableWidget(TopRatedTvPage()));
 

@@ -8,7 +8,8 @@ import 'package:tv/bloc/watchlisttv/watchlist_tv_event.dart';
 import 'package:tv/bloc/watchlisttv/watchlist_tv_state.dart';
 import 'package:tv/page/watchlist_tv_page.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 
 class MockWatchlistTVBloc
@@ -66,7 +67,7 @@ void main() {
     testWidgets('page should display ListView when data is loaded',
         (WidgetTester tester) async {
       when(() => mockWatchlistTVBloc.state)
-          .thenReturn(WatchlistTvHasData(testTVShowsList));
+          .thenReturn(WatchlistTvHasData(testTvList));
 
       await tester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
 

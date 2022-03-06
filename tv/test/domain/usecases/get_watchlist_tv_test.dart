@@ -4,7 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 
 class MockTVRepository extends Mock implements TvRepository {}
@@ -22,11 +23,11 @@ void main() {
     test('should get list of movies from the repository', () async {
       // arrange
       when(() => repository.getWatchlistTv())
-          .thenAnswer((_) async => Right(testTVShowsList));
+          .thenAnswer((_) async => Right(testTvList));
       // act
       final result = await usecase.execute();
       // assert
-      expect(result, Right(testTVShowsList));
+      expect(result, Right(testTvList));
     });
   });
 }

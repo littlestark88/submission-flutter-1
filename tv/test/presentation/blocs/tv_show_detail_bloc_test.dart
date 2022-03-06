@@ -8,7 +8,8 @@ import 'package:tv/bloc/tvdetail/tv_detail_bloc.dart';
 import 'package:tv/bloc/tvdetail/tv_detail_event.dart';
 import 'package:tv/bloc/tvdetail/tv_detail_state.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
+
 
 class MockGetTVShowDetail extends Mock implements GetTvDetail {}
 
@@ -32,13 +33,13 @@ void main() {
       'should emit[Loading, HasData] when data is gotten successfully',
       build: () {
         when(() => mockGetTVShowDetail.execute(tId))
-            .thenAnswer((_) async => Right(testTVShowDetail));
+            .thenAnswer((_) async => Right(testTvDetail));
         return detailTVBloc;
       },
       act: (bloc) => bloc.add(FetchTvDetail(id: tId)),
       expect: () => [
         TvDetailLoading(),
-        TvDetailHasData(testTVShowDetail)
+        TvDetailHasData(testTvDetail)
       ],
       verify: (bloc) => verify(() => mockGetTVShowDetail.execute(tId)),
     );

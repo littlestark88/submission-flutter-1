@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helper/dummy_data/dummy_objects.dart';
+import '../../helper/dummy_data/tv_dummy_objects.dart';
 
 class MockTVRepository extends Mock implements TvRepository {}
 
@@ -23,11 +23,11 @@ void main() {
     test('should get tv show detail from the repository', () async {
       // arrange
       when(() => repository.getTvDetail(tId))
-          .thenAnswer((_) async => Right(testTVShowDetail));
+          .thenAnswer((_) async => Right(testTvDetail));
       // act
       final result = await usecase.execute(tId);
       // assert
-      expect(result, Right(testTVShowDetail));
+      expect(result, Right(testTvDetail));
     });
   });
 }

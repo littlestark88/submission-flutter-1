@@ -4,6 +4,7 @@ import 'package:core/common/utils.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/widgets/custom_drawer.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +41,7 @@ import 'package:tv/page/watchlist_tv_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SSLPining.init();
+  await Firebase.initializeApp();
   di.init();
   runApp(MyApp());
 }
