@@ -6,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../helper/dummy_data/tv_dummy_objects.dart';
 
-
 class MockDatabaseHelper extends Mock implements DatabaseHelper {}
 
 void main() {

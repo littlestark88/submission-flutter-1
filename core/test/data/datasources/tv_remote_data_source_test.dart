@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
 import '../../helper/json_reader.dart';
-import '../../helper/test_helper.mocks.dart';
+import '../../helper/test_helper_tv.mocks.dart';
 
 void main() {
   const API_KEY = 'api_key=e2487f73d71bda6db4d172a313647327';

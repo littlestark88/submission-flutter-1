@@ -44,6 +44,7 @@ dependencies:
     path: movie
   tv:
     path: tv
+  firebase_crashlytics: ^2.5.3
 
 dev_dependencies:
   flutter_test:

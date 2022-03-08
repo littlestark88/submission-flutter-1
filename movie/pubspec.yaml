@@ -13,6 +13,8 @@ dependencies:
   flutter_lints: ^1.0.0
   equatable: ^2.0.2
   flutter_bloc: ^8.0.1
+  firebase_crashlytics: ^2.5.3
+  firebase_core: ^1.6.0
 
   core:
     path: ../core
