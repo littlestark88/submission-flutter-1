@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^1.6.0
 
 
+
   core:
     path: core
   movie:
